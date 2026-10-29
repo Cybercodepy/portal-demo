@@ -1,0 +1,20 @@
+# Blueprint Render: sekali "Apply" -> langsung bikin DUA web online.
+services:
+  - type: web
+    name: nando
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --workers 1 --bind 0.0.0.0:$PORT wsgi:app
+    envVars:
+      - key: APP
+        value: web1
+  - type: web
+    name: bima
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --workers 1 --bind 0.0.0.0:$PORT wsgi:app
+    envVars:
+      - key: APP
+        value: web2
